@@ -1,5 +1,22 @@
 <h1>Printing Demo</h1>
-<button (click)="loadObjFile()">Get Obj From Assets</button><br />
-<button (click)="loadObjFileFromAPI()">Get Obj</button>
+<div class="progress-bar" *ngIf="loaderService.isLoading | async">
+  <mat-progress-bar mode="determinate"></mat-progress-bar>
+</div>
+<button id="upload_btn" (click)="handleClick()" mat-raised-button class="btn">
+  <label for="file" class="lable-icon"> Upload</label>
+  <input
+    id="file"
+    class=""
+    type="file"
+    (change)="fileChanged($event)"
+    accept=".obj"
+    hidden
+  />
+</button>
+<br />
+<button (click)="loadObjFileFromAPI()">Get Obj From API</button>
+<br />
+<button (click)="print()">Print</button>
+<h3>Status code {{ this.statusCode }}</h3>
 
 <div #myObject class="myObject"></div>
